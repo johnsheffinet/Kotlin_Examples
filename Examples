@@ -26,4 +26,4 @@ fun Vals(): String {
  
  
     return r
- }
+}
