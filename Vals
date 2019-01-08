@@ -1,1 +1,54 @@
+// examples of constants in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testVals()
+}
+
+@test fun testVals() {
+    var expected = ""
+    var returned = Vals()
+    try {
+        assertEquals(expected, returned, "FAIL Vals()")
+        println("PASS Vals()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Vals(): String {
+    var r = ""
+ 
+    val v1: Boolean = true
+    r += "${v1} as ${v1::class.simpleName}, "
+    
+    val v2 = 0b1.toByte()
+    r += "${v2} as ${v2::class.simpleName}, "
+    
+    val v3: Short
+    v3 = 0x1
+    r += "${v3} as ${v3::class.simpleName}, "
+    
+    val v4 = 1
+    r += "${v4} as ${v4::class.simpleName}, "
+    
+    val v5 = 1L
+    r += "${v5} as ${v5::class.simpleName}, "
+    
+    val v6 = 1f
+    r += "${v6} as ${v6::class.simpleName}, "
+    
+    val v7 = 1.0
+    r += "${v7} as ${v7::class.simpleName}, "
+    val v8 = '1'
+    r += "${v8} as ${v8::class.simpleName}, "
+    
+    val v9 = "1"
+    r += "${v9} as ${v9::class.simpleName}"
+ 
+    return r
+ }
