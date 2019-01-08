@@ -10,7 +10,7 @@ fun main() {
 }
 
 @test fun testVals() {
-    var expected = ""
+    var expected = "true as Boolean, 1 as Byte, 1 as Short, 1 as Int, 1 as Long, 1.0 as Float, 1.0 as Double, 1 as Char, 1 as String"
     var returned = Vals()
     try {
         assertEquals(expected, returned, "FAIL Vals()")
@@ -51,4 +51,4 @@ fun Vals(): String {
     r += "${v9} as ${v9::class.simpleName}"
  
     return r
- }
+}
