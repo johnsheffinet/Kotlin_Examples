@@ -1,1 +1,140 @@
+// examples of if and when in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testForks()
+}
+
+@test fun testForks() {
+    var expected = "Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. "
+    var returned = forks()
+    try {
+        assertEquals(expected, returned, "FAIL forks()")
+        println("PASS forks()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun forks(): String {
+    var r = ""
+    
+    fun f(k: Int): String =
+        when(k) {
+            0 -> "Sunday"
+            1 -> "Monday"
+            2 -> "Tuesday"
+            3 -> "Wednesday"
+            4 -> "Thursday"
+            5 -> "Friday"
+            6 -> "Saturday"
+            else -> throw IllegalArgumentException("${k} is not a day of the week")
+        }
+    val a = Array(7, {k -> f(k)})
+    
+    for((k, _) in a.withIndex()) {
+        when {
+            k == 1 || k == 2 || k == 4 || k ==5 -> r += "${a[k]} is a weekday. "
+            k == 3  -> r += "${a[k]} is humpday! "
+            else -> r += "${a[k]} is a weekend. "
+        }
+    }
+    
+    for((k, _) in a.withIndex()) {
+        r += when(k) {
+            1, 2, 4, 5 -> "${a[k]} is a weekday. "
+            3 -> "${a[k]} is humpday! "
+            else -> "${a[k]} is a weekend. "
+        }
+    }
+    
+    for((k, _) in a.withIndex()) {
+        if(k in (1..5) && !(k == 3)) {
+            r += "${a[k]} is a weekday. "
+        } else if(k == 3) {
+            r += "${a[k]} is humpday! "
+        } else {
+            r += "${a[k]} is a weekend. "
+        }
+    }
+    
+    for((k, _) in a.withIndex()) {
+        r += if(k in (1..2) || k in (4..5)) {
+            "${a[k]} is a weekday. "
+        } else if(k == 3) {
+            "${a[k]} is humpday! "
+        } else {
+            "${a[k]} is a weekend. "
+        }
+    }
+    
+    return r
+}
+
+    var returned = Forks()
+    try {
+        assertEquals(expected, returned, "FAIL Forks()")
+        println("PASS Forks()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Forks(): String {
+    var r = ""
+ 
+    fun f(k: Int): String =
+        when(k) {
+            0 -> "Sunday"
+            1 -> "Monday"
+            2 -> "Tuesday"
+            3 -> "Wednesday"
+            4 -> "Thursday"
+            5 -> "Friday"
+            6 -> "Saturday"
+            else -> throw IllegalArgumentException("${k} is not a day of the week")
+        }
+    val a = Array(7, {k -> f(k)})
+    
+    for((k, _) in a.withIndex()) {
+        when {
+            k == 1 || k == 2 || k == 4 || k ==5 -> r += "${a[k]} is a weekday. "
+            k == 3  -> r += "${a[k]} is humpday! "
+            else -> r += "${a[k]} is a weekend. "
+        }
+    }
+    
+    for((k, _) in a.withIndex()) {
+        r += when(k) {
+            1, 2, 4, 5 -> "${a[k]} is a weekday. "
+            3 -> "${a[k]} is humpday! "
+            else -> "${a[k]} is a weekend. "
+        }
+    }
+    
+    for((k, _) in a.withIndex()) {
+        if(k in (1..5) && !(k == 3)) {
+            r += "${a[k]} is a weekday. "
+        } else if(k == 3) {
+            r += "${a[k]} is humpday! "
+        } else {
+            r += "${a[k]} is a weekend. "
+        }
+    }
+    
+    for((k, _) in a.withIndex()) {
+        r += if(k in (1..2) || k in (4..5)) {
+            "${a[k]} is a weekday. "
+        } else if(k == 3) {
+            "${a[k]} is humpday! "
+        } else {
+            "${a[k]} is a weekend. "
+        }
+    }
+ 
+    return r
+}
