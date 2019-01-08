@@ -1,1 +1,44 @@
+// examples of variables and operators in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testVars()
+}
+
+@test fun testVars() {
+    var expected = ""
+    var returned = Vars()
+    try {
+        assertEquals(expected, returned, "FAIL Vars()")
+        println("PASS Vars()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Vars(): String {
+    var r = ""
+ 
+    var v1: Long = 3 * 2 / 3 % 2 + 3 - 2
+    r += "${v1} as ${v1::class.simpleName}, "
+    
+    var v2 = 3f
+    v2 *= 2
+    v2 /= 3
+    v2 += 2
+    v2 -= 3
+    r += "${v2} as ${v2::class.simpleName}, "
+    
+    var v3: Byte
+    v3 = 0b1010 shl 4 xor 0xa0.inv() ushr 4 and 0b1010
+    r += "${String.format("%02x", v3)} as ${v3::class.simpleName}, "
+    
+    var v4 = !(1 > 2) && 2 <= 3 || 3 != 4
+    r += "${v4} as ${v4::class.simpleName}"
+ 
+    return r
+ }
