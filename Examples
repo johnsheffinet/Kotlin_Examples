@@ -1,4 +1,4 @@
-// examples of ... in Kotlin
+// examples of constants in Kotlin
 
 package examples 
 
@@ -6,21 +6,21 @@ import kotlin.test.assertEquals
 import org.junit.Test as test
 
 fun main() {
-    test...()
+    testVals()
 }
 
-@test fun test...() {
+@test fun testVals() {
     var expected = ""
-    var returned = ...()
+    var returned = Vals()
     try {
-        assertEquals(expected, returned, "FAIL ...()")
-        println("PASS ...()")
+        assertEquals(expected, returned, "FAIL Vals()")
+        println("PASS Vals()")
     } catch (e: AssertionError) {
         println("${e}")
     }
 }
 
-fun ...(): String {
+fun Vals(): String {
     var r = ""
  
  
