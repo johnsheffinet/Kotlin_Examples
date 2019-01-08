@@ -1,1 +1,29 @@
+// examples of ... in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    test...()
+}
+
+@test fun test...() {
+    var expected = ""
+    var returned = ...()
+    try {
+        assertEquals(expected, returned, "FAIL ...()")
+        println("PASS ...()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun ...(): String {
+    var r = ""
+ 
+ 
+ 
+     return r
+ }
