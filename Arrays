@@ -1,1 +1,29 @@
+// examples of arrays in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testArrays()
+}
+
+@test fun testArrays() {
+    var expected = ""
+    var returned = Arrays()
+    try {
+        assertEquals(expected, returned, "FAIL Arrays()")
+        println("PASS Arrays()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Arrays(): String {
+    var r = ""
+ 
+ 
+ 
+    return r
+ }
