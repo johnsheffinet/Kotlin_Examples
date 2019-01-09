@@ -10,7 +10,7 @@ fun main() {
 }
 
 @test fun testLoops() {
-    var expected = "[[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[5, 4, 3], [2, 1], [0]]"
+    var expected = "[[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]]"
     var returned = Loops()
     try {
         assertEquals(expected, returned, "FAIL Loops()")
@@ -63,7 +63,7 @@ fun Loops(): String {
         j = k.iterator()
         do {
             r += "${j.next()}, "
-        } while(j >= 0)
+        } while(j.hasNext())
         r = "${r.subSequence(0..r.length - 3)}], "
     }
     r = "${r.subSequence(0..r.length - 3)}]"
