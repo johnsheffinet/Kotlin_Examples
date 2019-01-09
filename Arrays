@@ -22,7 +22,7 @@ fun main() {
 
 fun Arrays(): String {
     var r = ""
-    
+ 
     var a1: IntArray = IntArray(3, {k -> k - 1})
     r += "["; a1.forEach({v -> r += "${v}, "})
     r = "${r.subSequence(0..r.length - 3)}] as ${a1::class.simpleName}, "
