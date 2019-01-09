@@ -49,6 +49,6 @@ fun Vals(): String {
     
     val v9 = "1"
     r += "${v9} as ${v9::class.simpleName}"
- 
+    
     return r
 }
