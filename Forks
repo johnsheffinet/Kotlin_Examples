@@ -11,7 +11,7 @@ fun main() {
 
 @test fun testForks() {
     var expected = "Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. Sunday is a weekend. Monday is a weekday. Tuesday is a weekday. Wednesday is humpday! Thursday is a weekday. Friday is a weekday. Saturday is a weekend. "
-    var returned = Vals()
+    var returned = Forks()
     try {
         assertEquals(expected, returned, "FAIL Forks()")
         println("PASS Forks()")
