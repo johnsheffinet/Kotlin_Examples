@@ -11,7 +11,7 @@ fun main() {
 
 @test fun testLoops() {
     var expected = "[[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[5, 4, 3], [2, 1], [0]]"
-    var returned = Vals()
+    var returned = Loops()
     try {
         assertEquals(expected, returned, "FAIL Loops()")
         println("PASS Loops()")
@@ -38,9 +38,8 @@ fun Loops(): String {
     for(k in a.indices) {
         r += "["
         for(j in a[k].indices) {
-            t += "${a[k][j]}, "
+            r += "${a[k][j]}, "
         }
-        t = "${t.subSequence(0..t.length - 3)}], "
         r = "${r.subSequence(0..r.length - 3)}], "
     }
     r = "${r.subSequence(0..r.length - 3)}] "
@@ -49,28 +48,25 @@ fun Loops(): String {
     for((_, v) in a.withIndex()) {
         r += "["
         for((j, _) in v.withIndex()) {
-            t+= "${v[j]}, "
+            r += "${v[j]}, "
         }
-        t = "${t.subSequence(0..t.length - 3)}], "
         r = "${r.subSequence(0..r.length - 3)}], "
     }
     r = "${r.subSequence(0..r.length - 3)}] "
     
     r += "["
-    var k: Int
-    var j: Int
-    k = a.size - 1
-    while(k >= 0) {
+    var k: Iterator<IntArray>
+    var j: Iterator<IntArray>
+    k = a.iterator()
+    while(k.hasNext()) {
         r += "["
-        j = a[k].size - 1
+        j = k.iterator()
         do {
-            t += "${a[k][j]}, "
-            j--
+            r += "${j.next()}, "
         } while(j >= 0)
-        k--
         r = "${r.subSequence(0..r.length - 3)}], "
     }
-    r = "${r.subSequence(0..r.length - 3)}] "
+    r = "${r.subSequence(0..r.length - 3)}]"
  
     return r
 }
