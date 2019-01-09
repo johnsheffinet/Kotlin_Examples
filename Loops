@@ -1,1 +1,76 @@
+// examples of for, while and do ... while in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testLoops()
+}
+
+@test fun testLoops() {
+    var expected = "[[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[0], [1, 2], [3, 4, 5]] [[5, 4, 3], [2, 1], [0]]"
+    var returned = Vals()
+    try {
+        assertEquals(expected, returned, "FAIL Loops()")
+        println("PASS Loops()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Loops(): String {
+    var r = ""
+    val a = arrayOf(intArrayOf(0), intArrayOf(1, 2), intArrayOf(3, 4, 5))
+    
+    r += "["
+    for(v in a) {
+        r += "["
+        for(u in v) {
+            r += "${u}, "
+        }
+        r = "${r.subSequence(0..r.length - 3)}], "
+    }
+    r = "${r.subSequence(0..r.length - 3)}] "
+    
+    r += "["
+    for(k in a.indices) {
+        r += "["
+        for(j in a[k].indices) {
+            t += "${a[k][j]}, "
+        }
+        t = "${t.subSequence(0..t.length - 3)}], "
+        r = "${r.subSequence(0..r.length - 3)}], "
+    }
+    r = "${r.subSequence(0..r.length - 3)}] "
+    
+    r += "["
+    for((_, v) in a.withIndex()) {
+        r += "["
+        for((j, _) in v.withIndex()) {
+            t+= "${v[j]}, "
+        }
+        t = "${t.subSequence(0..t.length - 3)}], "
+        r = "${r.subSequence(0..r.length - 3)}], "
+    }
+    r = "${r.subSequence(0..r.length - 3)}] "
+    
+    r += "["
+    var k: Int
+    var j: Int
+    k = a.size - 1
+    while(k >= 0) {
+        r += "["
+        j = a[k].size - 1
+        do {
+            t += "${a[k][j]}, "
+            j--
+        } while(j >= 0)
+        k--
+        r = "${r.subSequence(0..r.length - 3)}], "
+    }
+    r = "${r.subSequence(0..r.length - 3)}] "
+ 
+    return r
+}
