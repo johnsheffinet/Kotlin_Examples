@@ -10,7 +10,7 @@ fun main() {
 }
 
 @test fun testVars() {
-    var expected = ""
+    var expected = "1 as Long, 1.0 as Float, 0a as Byte, true as Boolean"
     var returned = Vars()
     try {
         assertEquals(expected, returned, "FAIL Vars()")
@@ -41,4 +41,4 @@ fun Vars(): String {
     r += "${v4} as ${v4::class.simpleName}"
  
     return r
- }
+}

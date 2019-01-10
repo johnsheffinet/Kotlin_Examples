@@ -1,1 +1,59 @@
+// examples of arrays in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testArrays()
+}
+
+@test fun testArrays() {
+    var expected = "[-1, 0, 1] as IntArray, [-1, 0, 1] as Array, [-1, 0, 1] as Array, [-1, 0, 1] as IntArray, [-1, 0, 1] as Array, [0, 1] as filtered IntArray, [1, 0] as sorted IntArray, 1 as reduced Int"
+    var returned = Arrays()
+    try {
+        assertEquals(expected, returned, "FAIL Arrays()")
+        println("PASS Arrays()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Arrays(): String {
+    var r = ""
+ 
+    var a1: IntArray = IntArray(3, {k -> k - 1})
+    r += "["; a1.forEach({v -> r += "${v}, "})
+    r = "${r.subSequence(0..r.length - 3)}] as ${a1::class.simpleName}, "
+    
+    var a2 = Array<Int>(3, {k -> k - 1})
+    r += "["; a2.forEachIndexed({k, _ -> r += "${a2[k]}, "})
+    r = "${r.subSequence(0..r.length - 3)}] as ${a2::class.simpleName}, "
+    
+    var a3: Array<Int>
+    a3 = Array(3, {k -> k - 1})
+    r += "["; for(v in a3) {r += "${v}, "}
+    r = "${r.subSequence(0..r.length - 3)}] as ${a3::class.simpleName}, "
+    
+    var a4 = intArrayOf(0, 1, -1)
+    r += "["; for(k in a4.indices) {a4[k] = k - 1; r += "${a4[k]}, "}
+    r = "${r.subSequence(0..r.length - 3)}] as ${a4::class.simpleName}, "
+    
+    var a5 = arrayOf(-1, 0, 1)
+    r += "["; var i = a5.iterator(); while(i.hasNext()) {r += "${i.next()}, "}
+    r = "${r.subSequence(0..r.length - 3)}] as ${a5::class.simpleName}, "
+    
+    var a6 = a5.filter({v -> !(v < 0)}).toIntArray()
+    r += "["; a6.forEach({v -> r += "${v}, "})
+    r = "${r.subSequence(0..r.length - 3)}] as filtered ${a6::class.simpleName}, "
+    
+    var a7 = a6.sortedDescending().toIntArray()
+    r += "["; a7.forEach({v -> r += "${v}, "})
+    r = "${r.subSequence(0..r.length - 3)}] as sorted ${a7::class.simpleName}, "
+    
+    var a8 = a7.reduce({acc, next -> acc + next})
+    r += "${a8} as reduced ${a8::class.simpleName}"
+ 
+    return r
+}
