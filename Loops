@@ -54,19 +54,24 @@ fun Loops(): String {
     }
     r = "${r.subSequence(0..r.length - 3)}] "
     
-    r += "["
     var k: Iterator<IntArray>
-    var j: Iterator<IntArray>
+    var v: IntArray
+    var j: Iterator<Int>
+    var u: Int
+    
+    r += "["
     k = a.iterator()
     while(k.hasNext()) {
         r += "["
-        j = k.iterator()
-        do {
-            r += "${j.next()}, "
-        } while(j.hasNext())
+        v = k.next()
+        j = v.iterator()
+        while(j.hasNext()) {
+            u = j.next()
+            r += "${u}, "
+        }
         r = "${r.subSequence(0..r.length - 3)}], "
     }
     r = "${r.subSequence(0..r.length - 3)}]"
- 
+    
     return r
 }
