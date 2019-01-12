@@ -1,0 +1,29 @@
+// examples of functions in Kotlin
+
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testFuncs()
+}
+
+@test fun testFuncs() {
+    var expected = ""
+    var returned = Funcs()
+    try {
+        assertEquals(expected, returned, "FAIL Funcs()")
+        println("PASS Funcs()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Funcs(): String {
+    var r = ""
+ 
+ 
+ 
+    return r
+}
