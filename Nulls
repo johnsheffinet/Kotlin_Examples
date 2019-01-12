@@ -1,1 +1,41 @@
+// examples of nulls in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testNulls()
+}
+
+@test fun testNulls() {
+    var expected = "1, null, 1, null, 1, null, 1, 0, 1, null, null"
+    var returned = Nulls()
+    try {
+        assertEquals(expected, returned, "FAIL Nulls()")
+        println("PASS Nulls()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Nulls(): String {
+    var r = ""
+ 
+    var l: List<Int?>? = listOf(1, null)
+    
+    l?.forEach({r += "${if(it != null) it else null}, "})
+    
+    l?.forEach({r += "${it?.toString()}, "})
+    
+    l?.forEach({r += "${it?.let {it.toString()}}, "})
+    
+    l?.forEach({r += "${it ?: 0}, "})
+    
+    l?.forEach {try {r += "${it!!.toString()}, "} catch (e: NullPointerException) {r += "null, "}}
+    
+    l = null; r += "${l?.forEach {it?.toString() ?: 0}}"
+    
+    return r
+}
