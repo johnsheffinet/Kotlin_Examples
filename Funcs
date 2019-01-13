@@ -1,0 +1,95 @@
+// examples of functions in Kotlin
+
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testFuncs()
+}
+
+@test fun testFuncs() {
+    var expected = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19"
+    var returned = Funcs()
+    try {
+        assertEquals(expected, returned, "FAIL Funcs()")
+        println("PASS Funcs()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Funcs(): String {
+    var r = ""
+ 
+ // lambda, no parameters, no return
+    val f0 = {r += "0, "}
+    f0()
+    
+    // lambda, no parameters, return
+    var f1 = {"1, "}
+    r += f1()
+    
+    // lambda, parameters, no return
+    val f2: (Int) -> Unit = {p -> r += "${p}, "}
+    f2(2)
+    
+    // lambda, parameters, return
+    var f3: (Int, Int) -> String = {p, q -> "${p + q}, "}
+    r += f3(1, 2)
+    
+    // anonymous, no parameters, no return
+    val f4 = fun() {r += "4, "}
+    f4()
+    
+    // anonymous, no parameters, return
+    var f5 = fun(): String = "5, "
+    r += f5()
+    
+    // anonymous, parameters, no return
+    val f6 = fun(p: Int) {r += "${p}, "}
+    f6(6)
+    
+    // anonymous, parameters, return
+    var f7 = fun(p: Int, q: Int): String {return "${p + q}, "}
+    r += f7(3, 4)
+    
+    // function, no parameters, no return
+    fun f8(): Unit {r += "8, "}
+    f8()
+    
+    // function, no parameters, return
+    fun f9(): String = "9, "
+    r += f9()
+    
+    // function, parameters, no return
+    fun fA(p: Int) {r += "${p}, "}
+    fA(0xa)
+    
+    // function, parameters, return
+    fun fB(p: Int, q: Int): String {return "${p + q}, "}
+    r += fB(5, 6)
+    
+    // function, optional parameters, no return
+    fun fC(p: Int, q: Int = 6): Unit {r += "${p + q}, "}
+    fC(6)
+    
+    // function, named parameters, return
+    fun fD(p: Int = 6, q: Int): String {return "${p + q}, "}
+    r += fD(q = 7)
+    
+    // function, variable parameters, no return
+    fun fE(vararg ints: Int): Unit {var sum = 0; ints.forEach({sum += it}); r += "${sum}, "}
+    fE(2, 4, 8)
+    fE(7, 8)
+    fE(16)
+    
+    // function, spread operator, return
+    fun fF(vararg ints: Int): String {var sum: Int = 0; ints.forEach({sum += it}); return "${sum}, "}
+    r += fF(*intArrayOf(8, 9))
+    r += fF(*intArrayOf(3, 6, 9))
+    r += fF(*intArrayOf(19))
+ 
+    return "${r.subSequence(0..r.length - 3)}"
+}
