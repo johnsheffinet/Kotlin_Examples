@@ -1,1 +1,29 @@
+// examples of classes in Kotlin
 
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testClasses()
+}
+
+@test fun testClasses() {
+    var expected = ""
+    var returned = Classes()
+    try {
+        assertEquals(expected, returned, "FAIL Classes()")
+        println("PASS Classes()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Classes(): String {
+    var r = ""
+ 
+ 
+ 
+    return r
+}
