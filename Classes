@@ -1,0 +1,87 @@
+// examples of classes in Kotlin
+
+package examples 
+
+import kotlin.test.assertEquals
+import org.junit.Test as test
+
+fun main() {
+    testClasses()
+}
+
+@test fun testClasses() {
+    var expected = "{FileKt$main$C0@1f32e575}, {FileKt$main$C1@279f2327}, {2, Two}, {3, Three}, {4, Four}, {5, Five}, {6, Six}, {7, Seven}"
+    var returned = Classes()
+    try {
+        assertEquals(expected, returned, "FAIL Classes()")
+        println("PASS Classes()")
+    } catch (e: AssertionError) {
+        println("${e}")
+    }
+}
+
+fun Classes(): String {
+    var r = ""
+ 
+    class C0
+    val c0 = C0()
+    r += "{${c0.toString()}}, "
+    // 
+    class C1 {}
+    var c1 = C1()
+    r += "{${c1.toString()}}, "
+    
+    class C2 {
+        val k: Int = 2
+        var v: String = "Two"
+    }
+    val c2 = C2()
+    r += "{${c2.k}, ${c2.v}}, "
+    
+    class C3() {
+        val k: Int
+        var v: String
+        
+        init {
+            this.k = 3
+            this.v = "Three"
+        }
+    }
+    var c3 = C3()
+    r += "{${c3.k}, ${c3.v}}, "
+    
+    class C4(k: Int, v: String) {
+        val k: Int
+        var v: String
+        
+        init {
+            this.k = k
+            this.v = v
+        }
+    }
+    val c4 = C4(4, "Four")
+    r += "{${c4.k}, ${c4.v}}, "
+    
+    class C5(k: Int, v: String) {
+        val k: Int = k
+        var v: String = v
+    }
+    var c5 = C5(5, "Five")
+    r += "{${c5.k}, ${c5.v}}, "
+    
+    class C6(val k: Int = 6, var v: String = "Six") {}
+    val c6 = C6()
+    r += "{${c6.k}, ${c6.v}}, "
+    
+    class C7(val k: Int = 1) {
+        var v: String = "One"
+        
+        constructor(k: Int, v: String): this(k) {
+            this.v = v
+        }
+    }
+    var c7 = C7(7, "Seven")
+    r += "{${c7.k}, ${c7.v}}, "
+ 
+    return r
+}
